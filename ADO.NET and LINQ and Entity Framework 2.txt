@@ -1,0 +1,63 @@
+Create the following Table
+BusInfo (BusID – PK (Identity Column), BoardingPoint, TravelDate, Amount, Rating)
+
+Amount can accept decimal values
+
+Insert at least 7 records in the table							
+BusID	BoardingPoint	TravelDate	Amount	Rating
+1	BGL	            18-06-2017	400.65	2
+2	HYD	            05-10-2017	600.00	3
+3	CHN	            25-07-2016	445.95	3
+4	PUN	            10-12-2017	543.00	4
+5	MUM	            28-01-2017	500.50	4
+6	PUN	            27-03-2016	333.55	3
+7	MUM	            06-11-2016	510.00	4
+
+
+create database PKR_travels 
+
+
+
+ SET QUOTED_IDENTIFIER ON
+GO
+
+  CREATE  TABLE [dbo].[BusInfo]
+  ([BusID ] [int] NOT NULL,
+   [BoardingPoint] [int] NOT NULL,
+  [TravelDate] [Date] NOT NULL,
+  [Amount] [decimal] NOT NULL,
+  [Rating] [int] NOT NULL,
+  
+ 
+  CONSTRAINT [PK_FootBallLeague] PRIMARY KEY CLUSTERED
+  (
+  [BusID ] ASC
+  )
+  WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+  )
+  ON [PRIMARY]
+  GO
+
+--------------------------------------------------------------------------------------------------
+Create a stored procedure to insert the records in BusInfo table.	
+
+CREATE PROCEDURE InsertPKR_travels 
+			@BusID  int,
+           @BoardingPoint int(50),
+      @TravelDate Date (50),
+      @Amount decimal(50),
+      @Rating int (50),
+     
+	  As
+	  BEGIN
+	   SET NOCOUNT ON;
+	    INSERT INTO BusInfo (BusID, BoardingPoint ,TravelDate, Amount,Rating)  VALUES(@BusID,  @BoardingPoint , @TravelDate, @Amount, @Rating)
+-----------------------------------------------------------------------------------------------------------
+
+Retrieve all BoardingPoint and TravelDate for the amount which is greater than 450.
+
+ Select * from BusInfo where BoardingPoint,TravelDate from BusInfo where Amount> 450;
+
+Create View Bus_View to display the BusID, BoardingPoint whose rating is greater than 3
+
+ select  * from BusInfo where BusID, BoardingPoint from BusInfo where Rating>3;
